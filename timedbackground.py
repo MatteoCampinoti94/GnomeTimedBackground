@@ -18,6 +18,8 @@ images = [] ; path = os.getcwd()
 for e in extensions:
     images.extend(glob.glob(f'{path}/*.{e}'))
 
+if len(images) == 0: exit(1)
+
 if re.search(' random ', " "+" ".join(sys.argv)+" "):
     random.shuffle(images)
 else:
@@ -27,8 +29,6 @@ if re.search(' transition ', " "+" ".join(sys.argv)+" "):
     transition = True
 else:
     transition = False
-
-if len(images) == 0: exit(1)
 
 with open('background.xml', 'w') as f:
     f.write(f'''<background>
