@@ -17,7 +17,7 @@ else:
 extensions = ['jpeg', 'jpg', 'png', 'bmp']
 path = os.getcwd()
 pattern = re.compile('.*\.(jpeg|png|jpg|bmp)$')
-images = [path+'/'+f for f in os.listdir(path) if pattern.search(f)]
+images = [path+'/'+f for f in os.listdir(path) if pattern.search(f.lower())]
 
 if len(images) == 0: exit(1)
 
