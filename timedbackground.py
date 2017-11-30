@@ -24,7 +24,7 @@ if len(images) == 0: exit(1)
 if re.search(' random ', " "+" ".join(sys.argv)+" "):
     random.shuffle(images)
 else:
-    images.sort()
+    images.sort(key = str.lower)
 
 if re.search(' transition ', " "+" ".join(sys.argv)+" "):
     transition = True
