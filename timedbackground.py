@@ -23,6 +23,11 @@ if re.search(' random ', " "+" ".join(sys.argv)+" "):
 else:
     images.sort()
 
+if re.search(' transition ', " "+" ".join(sys.argv)+" "):
+    transition = True
+else:
+    transition = False
+
 if len(images) == 0: exit(1)
 
 with open('background.xml', 'w') as f:
@@ -36,8 +41,15 @@ with open('background.xml', 'w') as f:
     <second>{time.strftime("%S")}</second>
   </starttime>\n\n''')
 
-    for i in images:
+    for i in range(0, len(images)):
           f.write('<static>\n')
           f.write(f'<duration>{duration}</duration>\n')
-          f.write(f'<file>{i}</file>\n')
+          f.write(f'<file>{images[i]}</file>\n')
           f.write('</static>\n\n')
+
+          if i < len(images)-1 and transition:
+              f.write('<transition type="overlay">\n')
+              f.write('<duration>1.0</duration>\n')
+              f.write(f'<from>{images[i]}</from>\n')
+              f.write(f'<to>{images[i+1]}</to>\n')
+              f.write('</transition>\n\n')
