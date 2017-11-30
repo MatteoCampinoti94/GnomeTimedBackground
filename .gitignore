@@ -99,3 +99,10 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+# images and generated xml
+*.jpeg
+*.jpg
+*.png
+*.bmp
+background.xml
