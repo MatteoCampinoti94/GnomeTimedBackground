@@ -31,6 +31,8 @@ if re.search(' transition ', " "+" ".join(sys.argv)+" "):
 else:
     transition = False
 
+print(f'Images: {len(images)}\nDuration: {duration} secs')
+
 with open('background.xml', 'w') as f:
     f.write(f'''<background>
   <starttime>
