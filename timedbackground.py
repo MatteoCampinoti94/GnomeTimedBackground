@@ -7,10 +7,12 @@ import random
 duration = sys.argv[1:2]
 duration = "".join(duration)
 
-if not re.search('^[0-9]+$', duration):
+if not re.search('^([0-9]+|[0-9]*.[0-9]+)$', duration):
     duration = 60
 else:
-    duration = int(duration)
+    duration = float(duration)
+    if not duration > 0:
+        duration = 60
 
 extensions = ['jpeg', 'jpg', 'png', 'bmp']
 path = os.getcwd()
