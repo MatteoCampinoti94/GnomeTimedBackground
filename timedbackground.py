@@ -1,4 +1,3 @@
-import glob
 import re
 import os
 import sys
@@ -14,9 +13,9 @@ else:
     duration = int(duration)
 
 extensions = ['jpeg', 'jpg', 'png', 'bmp']
-images = [] ; path = os.getcwd()
-for e in extensions:
-    images.extend(glob.glob(f'{path}/*.{e}'))
+path = os.getcwd()
+pattern = re.compile('.*\.(jpeg|png|jpg|bmp)$')
+images = [path+'/'+f for f in os.listdir(path) if pattern.search(f)]
 
 if len(images) == 0: exit(1)
 
