@@ -4,34 +4,49 @@ import sys
 import time
 import random
 
-duration = sys.argv[1:2]
-duration = "".join(duration)
+duration = path = rand = transition = False
 
-if not re.search('^([0-9]+|[0-9]*.[0-9]+)$', duration):
-    duration = 60
-else:
-    duration = float(duration)
-    if not duration > 0:
+i = 1
+while i < len(sys.argv):
+    if sys.argv[i] == '-d' and i < len(sys.argv)-1:
+        path = sys.argv[i+1]
+        i += 1
+    elif sys.argv[i] == '-t' and i < len(sys.argv)-1:
+        duration = sys.argv[i+1]
+        i += 1
+    elif sys.argv[i] == '-r':
+        rand = True
+    elif sys.argv[i] == '-T':
+        transition = True
+
+    i += 1
+
+if duration:
+    try:
+        duration = float(duration)
+    except:
         duration = 60
+else:
+    duration = 60
+
+if not path or not os.path.isdir(path):
+    path = os.getcwd()
 
 extensions = ['jpeg', 'jpg', 'png', 'bmp']
-path = os.getcwd()
-pattern = re.compile('.*\.(jpeg|png|jpg|bmp)$')
+pattern = re.compile(f'.*\.({"|".join(extensions)})$')
 images = [path+'/'+f for f in os.listdir(path) if pattern.search(f.lower())]
 
 if len(images) == 0: exit(1)
 
-if re.search(' random ', " "+" ".join(sys.argv)+" "):
+if rand:
     random.shuffle(images)
 else:
     images.sort(key = str.lower)
 
-if re.search(' transition ', " "+" ".join(sys.argv)+" "):
-    transition = True
-else:
-    transition = False
-
-print(f'Images: {len(images)}\nDuration: {duration} secs')
+print(f'Images: {len(images)}')
+print(f'Duration: {duration} secs')
+print(f'Random: {bool(rand)}')
+print(f'Transition: {bool(transition)}')
 
 with open('background.xml', 'w') as f:
     f.write(f'''<background>
