@@ -71,3 +71,5 @@ with open('background.xml', 'w') as f:
               f.write(f'  <from>{images[i]}</from>\n')
               f.write(f'  <to>{images[i+1]}</to>\n')
               f.write('</transition>\n\n')
+
+    f.write('</background>\n')
