@@ -3,8 +3,11 @@ Utility program that takes all the pictures in a folder and uses them to create 
 
 ## Usage
 Run through interpreter or compiled.
-First argument has to be the duration of each image, expressed in seconds with an integer or float. Duration can be omitted.
 
-Argument `random` shuffles images, omitting it sorts them by name.
+`timebackground.py [options]`
 
-Argument `transition` enables transitions between images. Transitions last 1 second. **Warning**: transitions don't seem to work at the moment.
+Options:
+* `-d [path]` Specify a directory where to search images, if directory does not exist current one will be used instead.
+* `-t [time]` Specify the time in seconds that each image will be shown (fractions of a second accepted, e.g. 0.3).
+* `-r` Randomize Images
+* `-T` Enable 1 second transitions between images.
