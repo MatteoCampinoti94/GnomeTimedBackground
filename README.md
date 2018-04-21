@@ -14,4 +14,4 @@ Options:
 
 The program will create a 'background.xml' file in the folder the program is run into.
 
-`findimage.py background.xml`
+To find out which image is being displayed you can run `findimage.py [path/background.xml]` pointing it at a background.xml file and the program will output the current image.
